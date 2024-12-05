@@ -6,7 +6,23 @@ dotenv.config();
 const commands = [
     {
         name: 'talk-to-me',
-        description: 'How can you talk with someone that doesnt exist?'
+        description: 'How can you talk with someone that doesnt exist?',
+    },
+    {
+        name: 'show-me',
+        description: 'A representation of the truth',
+    },
+    {
+        name: 'say',
+        description: 'Make me say anything',
+        options: [
+             {
+                 name: 'message',
+                 description: 'Message you want',
+                 type: ApplicationCommandOptionType.String,
+                 required: true,
+             },
+            ]
     },
 ];
 

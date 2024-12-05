@@ -2,7 +2,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import { Client, IntentsBitField } from 'discord.js';
-import QuotesList from './quotes.js';
+import QuotesList from './Data/quotes.js';
+import MonsterGifs from './Data/gifs.js';
 
 const client = new Client({
     intents: [
@@ -12,6 +13,7 @@ const client = new Client({
         IntentsBitField.Flags.MessageContent,
     ],
 });
+
 
 client.on('ready', (c) => {
     console.log(`🟩 ${c.user.tag} is ready`);
@@ -23,6 +25,14 @@ client.on('interactionCreate', (inter) => {
     if (inter.commandName === 'talk-to-me') {
         const randomQuote = QuotesList[Math.floor(Math.random() * QuotesList.length)].quote;
         inter.reply(`${randomQuote}`);
+    }
+    if (inter.commandName === 'show-me') {
+        const randomGif = MonsterGifs[Math.floor(Math.random() * MonsterGifs.length)].gif;
+        inter.reply(`${randomGif}`);
+    }
+    if (inter.commandName === 'say') {
+        const message = inter.options.get('message').value
+        inter.reply(`\`\`\`${message}\`\`\``);
     }
 
     console.log(`/${inter.commandName} command triggered`);
